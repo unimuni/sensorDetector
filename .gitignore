@@ -3,3 +3,4 @@ out
 bin
 .idea
 SensorDetector.iml
+src/de/uniks/SensorDetector/License.java
