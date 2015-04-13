@@ -18,26 +18,44 @@ var World = {
             onLoaded: this.worldLoaded
         });
 
-        /*
-         The next step is to create the augmentation. In this example an image resource is created and passed to the AR.ImageDrawable. A drawable is a visual component that can be connected to an IR target (AR.Trackable2DObject) or a geolocated object (AR.GeoObject). The AR.ImageDrawable is initialized by the image and its size. Optional parameters allow for position it relative to the recognized target.
-         */
+        this.imgButton = new AR.ImageResource("images/imageOne.png");
 
-        /* Create overlay for page one */
-        var imgOne = new AR.ImageResource("images/imageOne.png");
+        //*** 1
+        /*var imgOne = new AR.ImageResource("images/imageOne.png");
         var overlayOne = new AR.ImageDrawable(imgOne, 1, {
-            offsetX: -0.15,
+            offsetX: -0.50,
             offsetY: 0
-        });
+        });*/
 
-        /*
-         The last line combines everything by creating an AR.Trackable2DObject with the previously created tracker, the name of the image target and the drawable that should augment the recognized image.
-         Please note that in this case the target name is a wildcard. Wildcards can be used to respond to any target defined in the target collection. If you want to respond to a certain target only for a particular AR.Trackable2DObject simply provide the target name as specified in the target collection.
-         */
-        var pageOne = new AR.Trackable2DObject(this.tracker, "*", {
+        var pageOneButton = this.createWwwButton("http://n1sco.com/specifications/", 1, {
+            offsetX: -0.25,
+            offsetY: -0.25,
+            zOrder: 1
+        });
+        new AR.Trackable2DObject(this.tracker, "i5", {
             drawables: {
-                cam: overlayOne
+                cam: [pageOneButton]
             }
         });
+
+        //*** 2
+        var imgTwo = new AR.ImageResource("images/boot.png");
+        var overlayTwo = new AR.ImageDrawable(imgTwo, 1, {
+            offsetX: -0.50,
+            offsetY: 0
+        });
+        new AR.Trackable2DObject(this.tracker, "saskia", {
+            drawables: {
+                cam: overlayTwo
+            }
+        });
+    },
+
+    createWwwButton: function createWwwButtonFn(url, size, options) {
+        options.onClick = function() {
+            AR.context.openInBrowser(url);
+        };
+        return new AR.ImageDrawable(this.imgButton, size, options);
     },
 
     worldLoaded: function worldLoadedFn() {
@@ -45,7 +63,7 @@ var World = {
         var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
         document.getElementById('loadingMessage').innerHTML =
             "<div" + cssDivLeft + ">Scan Target &#35;1 (surfer):</div>" +
-            "<div" + cssDivRight + "><img src='images/surfer.png'></img></div>";
+            "<div" + cssDivRight + "><img src='images/surfer.png' /></div>";
 
         // Remove Scan target message after 10 sec.
         setTimeout(function() {
