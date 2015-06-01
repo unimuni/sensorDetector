@@ -31,6 +31,7 @@ public class StartActivity extends Activity {
         this.architectView.onPostCreate();
         try {
             this.architectView.load( "file:///android_asset/www/index.html" );
+            //this.architectView.load( "http://10.10.158.124" );
         } catch (IOException e) {
             e.printStackTrace();
         }

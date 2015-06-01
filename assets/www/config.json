@@ -1,18 +1,26 @@
 [
   {
-    "name":"i5",
-    "url": "http://google1.de",
+    "name":"kuehlschrank",
+    "url": "http://google.de/kuehlschrank",
     "size": 1,
-    "offsetX": -0.25,
-    "offsetY": -0.25,
+    "offsetX": 0.00,
+    "offsetY": 0.00,
     "zOrder": 1
   },
   {
-    "name":"saskia",
-    "url": "http://www.ebay.de",
+    "name":"herd",
+    "url": "http://google.de/herd",
     "size": 1,
-    "offsetX": -0.25,
-    "offsetY": -0.25,
+    "offsetX": 0.00,
+    "offsetY": 0.00,
+    "zOrder": 1
+  },
+  {
+    "name":"fenster",
+    "url": "http://google.de/fenster",
+    "size": 1,
+    "offsetX": 0.00,
+    "offsetY": 0.00,
     "zOrder": 1
   }
 ]
