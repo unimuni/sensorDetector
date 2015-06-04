@@ -4,11 +4,11 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
         >
-    <TextView
-            android:layout_width="fill_parent"
+    <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World, StartActivity"
-            />
+            android:text="Config Datei"
+            android:id="@+id/main_btn_config" android:layout_gravity="right"/>
     <com.wikitude.architect.ArchitectView
             android:id="@+id/architectView"
             android:layout_width="fill_parent"
