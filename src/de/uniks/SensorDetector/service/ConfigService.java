@@ -58,4 +58,21 @@ public class ConfigService {
 
         return configEntry;
     }
+
+    public ConfigEntry getConfigBySensorName(String sensorname, Context context) {
+
+        if(sensorname == null || context == null) {
+            return null;
+        }
+
+        String json = loadConfigJSON(context);
+        List<ConfigEntry> configEntryList = getAllConfigEntries(json);
+        for(ConfigEntry entry : configEntryList) {
+
+            if(entry != null && sensorname.equals(entry.getName()) ) {
+                return entry;
+            }
+        }
+        return null;
+    }
 }

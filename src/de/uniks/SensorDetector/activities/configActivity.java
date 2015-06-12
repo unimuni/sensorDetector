@@ -1,12 +1,14 @@
 package de.uniks.SensorDetector.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.*;
 import de.uniks.SensorDetector.R;
 import de.uniks.SensorDetector.domain.ConfigEntry;
 import de.uniks.SensorDetector.service.ConfigService;
@@ -23,7 +25,8 @@ public class ConfigActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.configview);
 
-        String configJson = configService.loadConfigJSON(getApplicationContext());
+        final Context applicationContext = getApplicationContext();
+        String configJson = configService.loadConfigJSON(applicationContext);
         List<ConfigEntry> configEntries = configService.getAllConfigEntries(configJson);
 
         List<String> values = new ArrayList<>();
@@ -36,17 +39,32 @@ public class ConfigActivity extends Activity {
         final ListView listView = (ListView) findViewById(R.id.config_list_config);
         listView.setAdapter(adapter);
 
+        ConfigActivity configActivity = this;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 int itemPosition = position;
-                String  itemValue = (String) listView.getItemAtPosition(position);
+                String  sensorName = (String) listView.getItemAtPosition(position);
 
-                Toast.makeText(getApplicationContext(),
-                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_SHORT)
-                        .show();
+                ConfigEntry configEntry = configService.getConfigBySensorName(sensorName, applicationContext);
+
+                String sensor = configEntry.getName();
+                String url = configEntry.getUrl();
+
+                final SpannableString message = new SpannableString(sensor + "\n" + url);
+                Linkify.addLinks(message, Linkify.ALL);
+
+                final AlertDialog d = new AlertDialog.Builder(configActivity)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .setTitle("Sensorinformation")
+                        .setMessage(message)
+                        .create();
+
+                d.show();
+                ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+
             }
         });
     }
