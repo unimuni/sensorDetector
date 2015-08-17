@@ -7,7 +7,7 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Config Datei"
+            android:text="Konfiguration"
             android:id="@+id/main_btn_config" android:layout_gravity="right"/>
     <com.wikitude.architect.ArchitectView
             android:id="@+id/architectView"

@@ -39,7 +39,7 @@ public class ConfigActivity extends Activity {
         final ListView listView = (ListView) findViewById(R.id.config_list_config);
         listView.setAdapter(adapter);
 
-        ConfigActivity configActivity = this;
+        final ConfigActivity configActivity = this;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

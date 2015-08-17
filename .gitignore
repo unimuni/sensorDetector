@@ -2,5 +2,5 @@ gen
 out
 bin
 .idea
-SensorDetector.iml
+*.iml
 src/de/uniks/SensorDetector/License.java

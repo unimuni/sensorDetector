@@ -78,7 +78,7 @@ var World = {
         var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
         var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
         document.getElementById('loadingMessage').innerHTML =
-            "<div" + cssDivLeft + ">Scanne Bilder im Oma-Raum!</div>";
+            "<div" + cssDivLeft + ">Suche Sensoren im Oma-Raum!</div>";
             /*"<div" + cssDivRight + "><img src='images/surfer.png' /></div>"*/;
 
         // Remove Scan target message after 10 sec.
